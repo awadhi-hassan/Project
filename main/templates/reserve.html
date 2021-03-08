@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style=" width: 75%; margin: 0 auto; margin-top: 10;">
+    <div class="card-header" style="text-align: center; font-family: 'Times New Roman', Times, serif;">
+        <strong>RESERVATION PLATFORM</strong>
+    </div>
+    <li style="padding-left: 10;">
+        Welcome to the institution's reservation platform.
+    </li>
+    <div style="padding-left: 70; padding-right: 30;">
+        <form action="reserve/1" method="POST">  
+            {% csrf_token %}          
+            <label for="computer">Choose  computer</label>
+            <select id="" class="form-control" name="computer_node">  
+                {% for option in options %}      
+                    <option value="{{option}}">{{option}}</option> 
+                {% endfor %}             
+            </select>
+            <div class="d-flex justify-content-center">                
+                <button type="submit" class="btn btn-primary m-3">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

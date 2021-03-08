@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="width: 75%; margin: 0 auto; margin-top: 10; padding-bottom: 30;">
+    <div class="card-header">
+        <div style="text-align: center; font-family: 'Times New Roman', Times, serif; font-weight: bold;"><h3>FINGERPRINT AUTHENTICATION</h3></div>
+    </div>
+<div class="card-body">
+    <h5 class="card-title">Enrolment procedure</h5>
+    Follow the steps below to enroll your prints for reservation of space on computers.
+</div>
+<div  style="margin-left: 50;">
+    <li>
+        Click on the Fingerprint button if you havent registered your print with us before. 
+     </li>
+     <li>
+         Use you fingerprint to login and reserve space in our lab. Note you can only login if your fingerprints are already registered.
+     </li>
+</div>
+<div class="d-flex justify-content-end" style="margin-right: 20; margin-top: 30;">
+    <a href="/enroll">
+        <img src="static/photos/fingerprint.jpg" alt="fingerprint enrollment" style="margin-right: 20; height: 40px; width: 40px; border-radius: 50%;">
+    </a>
+    <a href="/reserve">
+        <button class="btn btn-primary">Reserve</button>
+    </a>
+</div>
+</div>
+{% endblock content %}

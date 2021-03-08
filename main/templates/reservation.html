@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="width: 75%; margin: 0 auto; margin-top: 10;">
+    <div class="card-header" style="text-align: center; font-family: 'Times New Roman', Times, serif;">
+        <strong>CREATE RESERVATION</strong>
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-end" style="padding: 10;">
+            <!--<button class="btn btn-success">Create</button>-->
+        </div>
+        <div>
+            <form action="/" method="POST">
+                {% csrf_token %}                  
+                <div class="d-flex">
+                    <!--Start time-->               
+                    <div class="d-flex">                
+                        <label for="start_time" style="margin-left: 10;" class="col-6">Start Time</label>
+                        <select name="start_time" class="col-7 form-control">
+                            {% for start in start_time %}
+                                <option value="{{start}}">
+                                    {{start}} hrs
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!--End time -->
+                    <div class="d-flex">
+                        <label for="end_time" style="margin-left: 70;" class="col-5">End Time</label>
+                        <select name="end_time" class="form-control col-7">
+                            {% for end in end_time %}
+                                <option value="{{end}}">
+                                    {{end}} hrs
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <br>
+                    <label for="description">Description</label>
+                    <textarea name="description" class="form-control col-7" style="margin-left: 20;" cols="5" rows="5" placeholder="Describe why you will be using the computer node."></textarea>
+                    <div class="d-flex justify-content-center" style="margin: 10;">                    
+                        <button type="submit" class="btn btn-success"> Create Reservation</button>
+                    </div>
+                </div>
+        
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
