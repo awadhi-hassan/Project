@@ -20,9 +20,10 @@ from main import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),    
-    path('enroll', views.enroll),    
-    path('enroll/fingerprint', views.fingerprint),    
+    path('enroll', views.enroll),        
     path('reserve', views.reserve),    
     path('reserve/1', views.reservation),
+    path('encryption/', views.encrypt),
+    path('decryption/', views.decrypt),
     path('', include('users.urls')),
 ]

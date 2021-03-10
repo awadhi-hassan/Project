@@ -1,78 +1,88 @@
 {% load static %}
 <html lang="en">
-<head>
+<head>    
     <title>{{title}}</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/">Ihaknas Technologies</a>
-            <li style="color: white;" class="nav-item active my-2 my-lg-0">
-                <a href="/fileUpload">
-                    <button class="btn btn-light">Secure Uploads</button>
-                </a>
-            </li>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
-                <div class="form-inline my-2 my-lg-0 ">
-                    <li style="color: white;" class="nav-item active my-2 my-lg-0">
-                        <a href="/enroll">
-                            <button class="btn btn-light">Enroll</button>
-                        </a>
-                    </li>
-                    <li class="nav-item active" style="margin-left: 10; color: white;">
-                        <a href="/reserve">
-                            <button class="btn btn-light">Reserve</button>                        
-                        </a>
-                    </li>
-                    {% if user.is_authenticated == False %}
-                        <li class="nav-item active" style="margin-left: 10; color: white;">
-                            <a href="/login">
-                                <button class="btn btn-light">Login</button>
-                            </a>
-                        </li>
-                        {% else %}
-                        
-                        <div class="nav-item dropdown" style="margin-left: 10; color: white;">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" href="" aria-haspopup="true" aria-expanded="false">
-                                <img src="static/photos/avatar.jpg" style="height: 35px; width: 35px; border-radius: 50%;">
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="">
-                                    {{ user.username }}
-                                </a>
-                                <a href="" class="dropdown-item">logout</a>
-                            </div>
-                        </div>
-                        
-                    {% endif %}
-                </div>
-            </div>
-        </nav>
-    </header>
-    <main style="min-height: calc(100vh - 56px - 44px);">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-        
-            {% block content %}
-            {% endblock content %}
-    
-    </main>  
-    <footer class="footer" style="background-color: black; padding: 10;">
-        <div class="container" style="text-align: center; color: white;">
-            © 2020 Copyright:
-            <a href="https://www.ihaknastechnologies.com">tech@ihaknas.ac.ke</a>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">Ihaknas Technologies</a>
+          <li style="color: white;" class="nav-item active my-2 my-lg-0">
+            <a href="/encryption">
+                <button class="btn btn-light">Secure Uploads</button>
+            </a>
+        </li>
+          <li style="color: white; margin-left: 10;" class="nav-item active my-2 my-lg-0">
+            <a href="/decryption">
+                <button class="btn btn-light">Decrypt Files</button>
+            </a>
+        </li>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+            </ul>
+            
+            <div class="d-flex">  
+              {% if user.is_authenticated == False %}
+                  <li class="nav-item active" style="margin-left: 10; color: white;">
+                      <a href="/login">
+                          <button class="btn btn-light">Login</button>
+                      </a>
+                  </li>
+              {% else %}
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <img src="static/photos/avatar.jpg" alt="" height="30px" width="30px" class="rounded-circle">
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="">{{ user.username }}</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="/logout">logout</a></li>          
+                    </ul>
+                  </li>
+                </ul>   
+              {% endif %} 
+              <li style="color: white;" class="nav-item active my-2 my-lg-0">
+                <a href="/enroll">
+                  <button class="btn btn-light">Enroll</button>
+                </a> 
+              </li>        
+              <li style="color: white; margin-left: 7;" class="nav-item active my-2 my-lg-0">
+                <a href="/reserve">
+                  <button class="btn btn-light">Reserve</button>
+                </a> 
+              </li>                
+              </div>
+          </div>
         </div>
-    </footer>
+      </nav>
+  </header>
+
+  <main style="min-height: calc(100vh - 56px - 44px);">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    
+        {% block content %}
+        {% endblock content %}
+
+  </main>
+  <footer class="footer" style="background-color: black; padding: 10;">
+    <div class="container" style="text-align: center; color: white;">
+        © 2020 Copyright:
+        <a href="https://www.ihaknastechnologies.com">tech@ihaknas.ac.ke</a>
+    </div>
+</footer>
 </body>
 </html>

@@ -1,8 +1,15 @@
 from django.shortcuts import render, HttpResponse
 from .models import Fingerprint, Reservation
 from django.contrib.auth.models import User
+from users.fingerprint import FingerPrint
 
 computer_number = 1
+
+def encrypt(request):
+    return render(request, template_name='encryption.html')
+
+def decrypt(request):
+    return render(request, template_name="decryption.html")
 
 def reservation(request):
     cont={
@@ -29,17 +36,8 @@ def home(request):
 
     return render(request, template_name='home.html', context={'title': 'home'})
 
-def enroll(request):
-    if request.POST:
-        post = request.POST
-        fp = Fingerprint()
-        fp.first_name = post['first_name']
-        fp.last_name = post['last_name']
-        fp.save()
+def enroll(request):      
     return render(request, template_name='enroll.html', context={'title': 'enroll'})
-
-def fingerprint(request):
-    return HttpResponse("Place you finger on the fingerprint scanner!")
 
 def reserve(request):
     cont = {

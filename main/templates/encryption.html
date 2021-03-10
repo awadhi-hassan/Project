@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h3 class="mt-2">File encryption for Uploads.</h3>
+        <p>Upload file here and they will be encrypted for there safety on the server incase they are accessed by wrong hands</p>
+        <div class="col-4">
+            <form action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="file"><strong>File</strong></label>
+                <input type="file" class="form-control">
+                <input type="submit" class="btn btn-primary mt-3" value="Encrypt" name="" id="">                
+            </form>
+        </div>
+    </div>
+{% endblock content %}
