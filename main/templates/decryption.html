@@ -1,5 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
+    <div class="container">
+        <h3 class="mt-2">Choose a file from your repository to decrypt.</h3>
+        <div class="col-7">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="file"><strong>File</strong></label>
+                <select name="file" class="form-control">
+                    {% for file in files %}
+                        <option value="{{file}}">
+                            {{file}}
+                        </option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="btn btn-primary mt-3" >Pick</button>
+            </form>
+        </div>
+    </div>
 {% endblock content %}

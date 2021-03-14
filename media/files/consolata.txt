@@ -1,0 +1,2 @@
+look for a type of data (.csv, .txt) online that you can use to perform regression analysis
+save file in the folder in the desktop

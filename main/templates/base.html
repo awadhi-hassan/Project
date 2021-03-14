@@ -30,7 +30,7 @@
             
             <div class="d-flex">  
               {% if user.is_authenticated == False %}
-                  <li class="nav-item active" style="margin-left: 10; color: white;">
+                  <li class="nav-item active" style="margin-right: 10; color: white;">
                       <a href="/login">
                           <button class="btn btn-light">Login</button>
                       </a>
@@ -65,10 +65,10 @@
       </nav>
   </header>
 
-  <main style="min-height: calc(100vh - 56px - 44px);">
+  <main style="min-height: calc(100vh - 72px - 44px);">
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
+            <div class="alert alert-{{ message.tags }} d-flex justify-content-center" style="text-align: center;">
                 {{ message }}
             </div>
         {% endfor %}

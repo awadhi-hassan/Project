@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <script>
+        function fingerprint() {
+            document.querySelector('.bg-modal').style.display = 'flex';
+        }
+        function close() {
+            alert('close clicked')
+        }
+        document.querySelector('.close').addEventListener('click', function(){
+            document.querySelector('.bg-modal').style.display = 'none';
+        })
+    </script>
+    <style>
+        .bg-modal {
+            background-color: rgba(0, 0, 0, 0.9);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-contents {
+            height: 300px;
+            width: 500px;
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            border-radius: 4px;
+        }
+        
+        #img {
+            height: 150px;
+            width: 150px;
+        }
+        .close {
+            position: absolute;
+            top: 0;right: 10px;
+            font-size: 42px;
+            color: #666;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
+    </style>
+</div>
+<div class="bg-modal">
+    <div class="modal-contents">
+        <img src="{% static 'photos/ok.jpeg'%}" width="130px" height="130px" class="rounded-circle">
+        <p>Congratulations!, Your fingerprint enrollment procedure was successfull. You may proceed to reserve a computer node.</p>        
+        <div class="d-flex justify-content-end">
+            <a href="/reserve">
+                <button class="btn btn-success" style="margin-right: 70;">Ok</button>
+            </a>
+        </div>
+    </div>
+</div> 
+</body>
+</html>

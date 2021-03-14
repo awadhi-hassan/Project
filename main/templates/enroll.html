@@ -6,20 +6,60 @@
         <div style="text-align: center; font-family: 'Times New Roman', Times, serif; font-weight: bold;"><h3>FINGERPRINT AUTHENTICATION</h3></div>
     </div>
     <li style="padding: 5;">Please enter your names and place hit the submit button. When the fingerprint picture appears, place you thumb on the scanner for processing.</li>
-    <form action="#" method="POST" style="padding-left: 20;padding-right: 20;">
+    <div style="margin-left: 200;">
+        <form action="/enroll/fingerprint" method="POST" style="padding-left: 20;padding-right: 20;">
+            {% csrf_token %}
+            <div class="col-8">
+                <label for="first_name"><strong>First Name</strong></label>
+                <input type="text" name="first_name" placeholder="First name..." class="form-control" style="margin-bottom: 20;">
+            </div>
+            <div class="col-8">
+                <label for="last_name"><strong>Last Name</strong></label>
+                <input type="text" name="last_name" placeholder="Last name..." class="form-control" style="margin-bottom: 20;">            
+            </div>
+            <div class="col-8">
+                <label for="username"><strong>Username</strong></label>
+                <input type="text" name="username" placeholder="Username..." class="form-control" style="margin-bottom: 20;">
+            </div>
+            <div class="col-8">
+                <label for="password"><strong>Password</strong></label>
+                <input type="password" name="password" placeholder="Password..." class="form-control"style="margin-bottom: 20;">
+            </div>
+            <div class="d-flex justify-content-end" style="padding-top: 20;">
+                <button type="submit" class="btn btn-primary" onclick="fingerprint()"> Submit</button>
+            </div>
+        </form>
+    </div>
+    <!-- <form action="/enroll/fingerprint" method="POST" style="padding-left: 20;padding-right: 20;">
         {% csrf_token %}
-        <label for="user"><strong>First Name</strong></label>
-        <input type="text" name="first_name" placeholder="Enter your name here...." class="form-control col-6" style="margin-bottom: 20;">
-        <label for="user"><strong>Last Name</strong></label>
-        <input type="text" name="last_name" placeholder="Enter your name here...." class="form-control col-6">
-        <div class="d-flex justify-content-end" style="padding: 20;">
+        <div class="col-4">
+            <label for="first_name"><strong>First Name</strong></label>
+            <input type="text" name="first_name" placeholder="First name..." class="form-control" style="margin-bottom: 20;">
+        </div>
+        <div class="col-4">
+            <label for="last_name"><strong>Last Name</strong></label>
+            <input type="text" name="last_name" placeholder="Last name..." class="form-control" style="margin-bottom: 20;">            
+        </div>
+        <div class="col-4">
+            <label for="username"><strong>Username</strong></label>
+            <input type="text" name="username" placeholder="Username..." class="form-control" style="margin-bottom: 20;">
+        </div>
+        <div class="col-4">
+            <label for="password"><strong>Password</strong></label>
+            <input type="password" name="password" placeholder="Password..." class="form-control"style="margin-bottom: 20;">
+        </div>
+        <div class="d-flex justify-content-end" style="padding-top: 20;">
             <button type="submit" class="btn btn-primary" onclick="fingerprint()"> Submit</button>
         </div>
-    </form>
+    </form> -->
+    
     <script>
         function fingerprint() {
             document.querySelector('.bg-modal').style.display = 'flex';
         }
+        document.querySelector('.close').addEventListener('click', function(){
+            document.querySelector('.bg-modal').style.display = 'none';
+        })
     </script>
     <style>
         .bg-modal {
@@ -46,13 +86,23 @@
             height: 150px;
             width: 150px;
         }
+        .close {
+            position: absolute;
+            top: 0;right: 10px;
+            font-size: 42px;
+            color: #666;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
     </style>
 </div>
 <div class="bg-modal">
     <div class="modal-contents">
+        <div class="close" onclick="close()">+</div>
         <img id="img" src="static/photos/fingerprint.jpg" alt="">
         <p class="mt-3">Now drug your finger on the fingerprint sensor!</p>        
     </div>
 </div>
+
 
 {% endblock content %}
