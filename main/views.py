@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from cryptography.fernet import Fernet
-from ComputerProject.settings import MEDIA_ROOT
+from ComputerProject.settings import MEDIA_ROOT, BASE_DIR
 from .models import Reservation, Files
 from users.fingerprint import FingerPrint
 import os
@@ -30,6 +30,7 @@ def encrypt(request):
             with open(filename, 'wb') as f:
                 f.write(enc_data)
         encrypt_file(filename, key)
+        messsages.success(request, 'File Uploaded successfully. Remember you will have to decrypt it first if you want to view.')
         
     return render(request, template_name='encryption.html')
 
@@ -51,7 +52,7 @@ def decrypt(request):
         decrypt_file(filename,key)
         messages.success(request, 'File decrypted successfully!')
 
-    options = os.listdir("C:/Users/Ihaknas/Desktop/ComputerProject/media/files")
+    options = os.listdir(os.path.join(BASE_DIR, 'media/files'))
     cont = {
         'files': [file for file in options]
     }
